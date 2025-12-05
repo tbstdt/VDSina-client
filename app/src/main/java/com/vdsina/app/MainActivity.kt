@@ -236,9 +236,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadCurrentProfile() {
         val profile = profileManager.getCurrentProfile()
-        profileManager.loadCookiesForProfile(profile)
-        binding.webView.loadUrl(profile.url)
-        updateTitle()
+        clearWebViewData()
+        profileManager.loadCookiesForProfile(profile) {
+            runOnUiThread {
+                binding.webView.loadUrl(profile.url)
+                updateTitle()
+            }
+        }
+    }
+
+    private fun clearWebViewData() {
+        binding.webView.clearHistory()
+        binding.webView.clearCache(true)
+        android.webkit.WebStorage.getInstance().deleteAllData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -51,6 +51,10 @@ class ProfilesActivity : AppCompatActivity() {
     }
 
     private fun selectProfile(profile: Profile) {
+        if (profileManager.isCurrentProfile(profile.id)) {
+            finish()
+            return
+        }
         profileManager.switchToProfile(profile.id)
         adapter.currentProfileId = profile.id
         adapter.notifyDataSetChanged()

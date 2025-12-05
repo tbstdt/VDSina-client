@@ -96,31 +96,39 @@ class ProfileManager(context: Context) {
         }
     }
 
-    fun loadCookiesForProfile(profile: Profile) {
-        cookieManager.removeAllCookies(null)
-        cookieManager.flush()
-
-        if (profile.cookies.isNotEmpty() && profile.url.isNotEmpty()) {
-            val cookies = profile.cookies.split(";")
-            cookies.forEach { cookie ->
-                val trimmed = cookie.trim()
-                if (trimmed.isNotEmpty()) {
-                    cookieManager.setCookie(profile.url, trimmed)
-                }
-            }
+    fun loadCookiesForProfile(profile: Profile, onComplete: (() -> Unit)? = null) {
+        cookieManager.removeAllCookies { _ ->
             cookieManager.flush()
+
+            if (profile.cookies.isNotEmpty() && profile.url.isNotEmpty()) {
+                val cookies = profile.cookies.split(";")
+                cookies.forEach { cookie ->
+                    val trimmed = cookie.trim()
+                    if (trimmed.isNotEmpty()) {
+                        cookieManager.setCookie(profile.url, trimmed)
+                    }
+                }
+                cookieManager.flush()
+            }
+            onComplete?.invoke()
         }
     }
 
-    fun switchToProfile(id: String): Profile {
+    fun switchToProfile(id: String, onComplete: ((Profile) -> Unit)? = null): Profile {
         val currentProfile = getCurrentProfile()
         saveCookiesForCurrentProfile(currentProfile.url)
 
         setCurrentProfileId(id)
         val newProfile = getCurrentProfile()
-        loadCookiesForProfile(newProfile)
+        loadCookiesForProfile(newProfile) {
+            onComplete?.invoke(newProfile)
+        }
 
         return newProfile
+    }
+
+    fun isCurrentProfile(id: String): Boolean {
+        return getCurrentProfileId() == id
     }
 
     companion object {
