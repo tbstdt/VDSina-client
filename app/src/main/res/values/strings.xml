@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VDSina</string>
+
+    <!-- Menu -->
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_refresh">Обновить</string>
+    <string name="menu_profiles">Профили</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+
+    <!-- Preference categories -->
+    <string name="pref_category_server">Сервер</string>
+    <string name="pref_category_auth">Авторизация</string>
+    <string name="pref_category_data">Данные</string>
+
+    <!-- Server preferences -->
+    <string name="pref_server_url_title">URL сервера</string>
+    <string name="pref_server_url_summary">Адрес панели управления</string>
+
+    <!-- Auth preferences -->
+    <string name="pref_login_title">Логин</string>
+    <string name="pref_login_summary">Email для авторизации</string>
+    <string name="pref_password_title">Пароль</string>
+    <string name="pref_password_summary">Пароль для авторизации</string>
+
+    <!-- Data preferences -->
+    <string name="pref_clear_cookies_title">Очистить cookies</string>
+    <string name="pref_clear_cookies_summary">Удалить сохраненную сессию</string>
+
+    <!-- Messages -->
+    <string name="cookies_cleared">Cookies очищены</string>
+    <string name="error_loading">Ошибка загрузки страницы</string>
+
+    <!-- Profiles -->
+    <string name="profiles_title">Профили</string>
+    <string name="profile_name">Название профиля</string>
+    <string name="add_profile">Добавить профиль</string>
+    <string name="edit_profile">Редактировать профиль</string>
+    <string name="delete_profile">Удалить профиль</string>
+    <string name="delete_profile_confirm">Удалить профиль \"%1$s\"?</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete">Удалить</string>
+    <string name="current_profile">Текущий профиль: %1$s</string>
+</resources>
