@@ -103,6 +103,11 @@ class MainActivity : AppCompatActivity() {
 
                     cookieManager.flush()
 
+                    val isLoginPage = url?.contains("/login") == true
+                    if (isLoginPage) {
+                        autoLoginAttempted = false
+                    }
+
                     if (!autoLoginAttempted) {
                         checkAndPerformAutoLogin(view)
                     }
